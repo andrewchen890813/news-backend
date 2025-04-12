@@ -1,0 +1,25 @@
+name: Deploy Firebase Functions
+
+on:
+  push:
+    branches:
+      - main # 或是你部署的分支名稱
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # 根據你的 Node.js 版本調整
+
+      - name: Install dependencies
+        run: cd functions && npm install
+
+      - name: Deploy to Firebase
+        run: cd functions && firebase deploy --only functions --token "${{ secrets.FIREBASE_TOKEN }}"
