@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: 18 # 根據你的 Node.js 版本調整
 
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools # 安裝 Firebase CLI
+
       - name: Install dependencies
         run: cd functions && npm install
 
